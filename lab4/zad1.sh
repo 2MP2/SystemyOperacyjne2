@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 # b) Znajdź zapytania, które mają frazę "denied" w linku
 echo "b) Zapytania z frazą \"denied\" w linku:"

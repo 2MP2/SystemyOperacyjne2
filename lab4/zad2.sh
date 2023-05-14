@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 # a) Wypisz osoby o nieparzystym ID
 echo "a) Osoby o nieparzystym ID:"
