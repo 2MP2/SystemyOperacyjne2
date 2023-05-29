@@ -27,7 +27,7 @@ def mark_square(row, col):
 
         if check_winner(current_player):
             messagebox.showinfo("Koniec gry", "Gracz {} wygrał!".format(current_player))
-            reset_game()
+            new_board()
         else:
             if current_player == "X":
                 current_player = "O"
@@ -55,7 +55,7 @@ def check_winner(player):
     return False
 
 # Funkcja resetująca grę
-def reset_game():
+def new_board():
     global current_player
     board.clear()
     board.extend([[" ", " ", " ", " ", " "],
