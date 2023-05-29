@@ -21,13 +21,13 @@ window.title("Kółko i krzyżyk")
 
 
 # Funkcja oznaczająca wybrane pole
-def mark_square(row, col):
+def mark_square(r, c):
     global current_player
 
-    if board[row][col] == " ":
-        board[row][col] = current_player
-        button = buttons[row][col]
-        button.config(text=current_player)
+    if board[r][c] == " ":
+        board[r][c] = current_player
+        btn = buttons[r][c]
+        btn.config(text=current_player)
 
         if check_winner(current_player):
             messagebox.showinfo("Koniec gry", "Gracz {} wygrał!".format(current_player))
@@ -42,13 +42,13 @@ def mark_square(row, col):
 # Funkcja sprawdzająca warunki zwycięstwa
 def check_winner(player):
     # Sprawdzenie wierszy
-    for row in board:
-        if row.count(player) == 5:
+    for r in board:
+        if r.count(player) == 5:
             return True
 
     # Sprawdzenie kolumn
-    for col in range(5):
-        if [board[row][col] for row in range(5)].count(player) == 5:
+    for c in range(5):
+        if [board[r][c] for r in range(5)].count(player) == 5:
             return True
 
     # Sprawdzenie przekątnych
@@ -79,19 +79,19 @@ def new_board():
          [" ", " ", " ", " ", " "],
          [" ", " ", " ", " ", " "]])
     current_player = "X"
-    for row in range(5):
-        for col in range(5):
-            buttons[row][col].config(text=" ")
+    for r in range(5):
+        for c in range(5):
+            buttons[r][c].config(text=" ")
 
 
 # Tworzenie przycisków na planszy
 buttons = []
-for row in range(5):
+for r in range(5):
     button_row = []
-    for col in range(5):
+    for c in range(5):
         button = tk.Button(window, text=" ", font=("Arial", 20), width=6, height=3,
-                           command=lambda row=row, col=col: mark_square(row, col))
-        button.grid(row=row, column=col, padx=5, pady=5)
+                           command=lambda row=r, col=c: mark_square(row, col))
+        button.grid(row=r, column=c, padx=5, pady=5)
         button_row.append(button)
     buttons.append(button_row)
 
