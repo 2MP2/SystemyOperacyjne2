@@ -18,13 +18,13 @@ window.title("Kółko i krzyżyk")
 
 
 # Funkcja oznaczająca wybrane pole
-def mark_square(row, col):
+def mark_square(r, c):
     global current_player
 
-    if board[row][col] == " ":
-        board[row][col] = current_player
-        button = buttons[row][col]
-        button.config(text=current_player)
+    if board[r][c] == " ":
+        board[r][c] = current_player
+        btn = buttons[r][c]
+        btn.config(text=current_player)
 
         if check_winner(current_player):
             messagebox.showinfo("Koniec gry", "Gracz {} wygrał!".format(current_player))
