@@ -22,7 +22,7 @@ window.title("Kółko i krzyżyk")
 
 # Funkcja oznaczająca wybrane pole
 def mark_square(r, c):
-    global current_player
+    global current_player, move_start_time
 
     if board[r][c] == " ":
         board[r][c] = current_player
@@ -37,6 +37,9 @@ def mark_square(r, c):
                 current_player = "O"
             else:
                 current_player = "X"
+
+        move_start_time = time.time()
+        window.after(100, check_time_limit)
 
 
 # Funkcja sprawdzająca warunki zwycięstwa
@@ -66,8 +69,8 @@ def check_time_limit():
     if current_time - move_start_time > 5:
         messagebox.showinfo("Czas minął", "Przekroczono limit czasu na wykonanie ruchu!")
         new_board()
-
-    window.after(5000, check_time_limit)
+    else:
+        window.after(100, check_time_limit)
 
 # Funkcja resetująca grę
 def new_board():
@@ -96,6 +99,6 @@ for r in range(5):
     buttons.append(button_row)
 
 
-check_time_limit()
+#check_time_limit()
 # Uruchomienie pętli głównej
 window.mainloop()
