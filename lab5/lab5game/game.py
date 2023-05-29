@@ -1,3 +1,4 @@
+import random
 import tkinter as tk
 from tkinter import messagebox
 import time
@@ -42,6 +43,15 @@ def mark_square(r, c):
         window.after(100, check_time_limit)
 
 
+def make_rand_move():
+    while True:
+        r = random.randint(0, 4)
+        c = random.randint(0, 4)
+        if board[r][c] == " ":
+            mark_square(r, c)
+            break
+
+
 # Funkcja sprawdzająca warunki zwycięstwa
 def check_winner(player):
     # Sprawdzenie wierszy
@@ -62,15 +72,17 @@ def check_winner(player):
 
     return False
 
+
 def check_time_limit():
     global move_start_time
 
     current_time = time.time()
     if current_time - move_start_time > 5:
         messagebox.showinfo("Czas minął", "Przekroczono limit czasu na wykonanie ruchu!")
-        new_board()
+        make_rand_move()
     else:
         window.after(100, check_time_limit)
+
 
 # Funkcja resetująca grę
 def new_board():
